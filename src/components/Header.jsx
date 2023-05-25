@@ -2,6 +2,11 @@
 import React, { Component } from 'react';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
+import  trivia  from '../trivia.png';
+
+
+import '../App.css';
+import '../styles/Header.css';
 
 class Header extends Component {
 
@@ -27,17 +32,20 @@ class Header extends Component {
     const { imgProfile} = this.state;
     const { name, score } = this.props
     return (
-      <div>
-        <section>
-          <div>
+      <div className="header-container">
+        <img className="logo logo-header"  src={trivia} alt="Logo" />
+          <div className="container-info-player">
             <h5 data-testid="header-player-name">{name}</h5>
-            <div>
+            <div className="container-score-header">
               <h6>Score:</h6>
               <h6 data-testid="header-score">{score}</h6>
             </div>
           </div>
-          <div><img data-testid="header-profile-picture" src={imgProfile} alt="" /></div>
-        </section>
+
+          <div className="container-header-img">
+            <img data-testid="header-profile-picture" src={imgProfile} alt={`avatar de ${name}`}/>
+            </div>
+
       </div>
     )
   }

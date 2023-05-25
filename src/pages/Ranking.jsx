@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { resetAssertions } from '../redux/actions';
+import Header from '../components/Header';
+
+import '../App.css';
+import '../styles/Ranking.css';
 
 class Ranking extends Component {
   state = {
@@ -29,24 +33,34 @@ class Ranking extends Component {
   render() {
     const { ranking } = this.state;
     return (
-      <div>
-        <h1 data-testid="ranking-title">Ranking</h1>
-        {ranking && ranking.map((rank, index) => (
-          <div key={ index }>
-            <p>{`Pos: ${index + 1}`}</p>
-            <p data-testid={ `player-name-${index}` }>{ rank.name }</p>
-            <img src={ rank.imgGrav } alt="" />
-            <p data-testid={ `player-score-${index}` }>{ rank.score }</p>
-            <p>{ rank.assertions }</p>
+      <div className="page-ranking">
+        <Header />
+        <div className="container-info-rank">
+          <h1 data-testid="ranking-title">Ranking</h1>
+          <div className="container-rank">
+            {ranking && ranking.map((rank, index) => (
+              <div className="card-placar" key={ index }>
+                <p className="placing">{index + 1}</p>
+                <img src={ rank.imgGrav } alt="avatar player" />
+
+                <div className="placar">
+                  <p data-testid={ `player-name-${index}` }>{ rank.name }</p>
+                  <p data-testid={ `player-score-${index}` }>{ `Score: ${rank.score}` }</p>
+                  <p>{ `Assertions: ${rank.assertions}` }</p>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-        <button
-          type="button"
-          data-testid="btn-go-home"
-          onClick={ () => this.handleClickGoHome() }
-        >
-          Play Again
-        </button>
+          
+          <button
+          className="btn-playagain"
+            type="button"
+            data-testid="btn-go-home"
+            onClick={ () => this.handleClickGoHome() }
+          >
+            Play Again
+          </button>
+        </div>
       </div>
     );
   }

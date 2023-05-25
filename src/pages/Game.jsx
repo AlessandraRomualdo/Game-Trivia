@@ -4,8 +4,10 @@ import Header from '../components/Header';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
 import { setScore } from '../redux/actions';
+import quiz from '../imagens/quiz.gif'
 
 import '../App.css';
+import '../styles/Game.css';
 
 class Game extends Component {
   state = {
@@ -161,36 +163,42 @@ class Game extends Component {
 
     return (
       
-      <div>
+      <div className="page-game">
         <Header />
-        <section>
-            {time}
-          <div>
-            { isLoading ? <h5> Carregando...</h5> : questions && (
-              <div>
-              <h5 data-testid="question-category">{questions.length > 0 && questions[indice].category}</h5>
-              <h5 data-testid="question-text">{questions.length > 0 && questions[indice].question}</h5>
-           
-                {shuffledAnswers.length > 0 && shuffledAnswers.map((answer, index) => (
-                  <div data-testid="answer-options" key={index}>
-                    {
-                      <button
-                      onClick={ () => this.toggleColor(questions[indice], answer) }
-                      disabled={ timeout }
-                      className={questions[indice].correct_answer === answer ? correct : wrong }
-                      type="button" 
-                      data-testid={questions[indice].correct_answer === answer ? "correct-answer" : `wrong-answer-${index}`}
-                      >{answer}
-                      </button>}
-                  </div>
-                ))}
 
-              { isAnswered && <button type="button" onClick={this.nextQuestion}>{indice === 4? 'Ver Resultado' : 'Próxima pergunta'}</button>}
+          <div className="container-quiz">
+            <div className="time-container">
+              <img src={quiz} alt="img logo quiz" />
+              <h5>{`Time left: ${time}`}</h5>
+              { isAnswered && <button type="button" onClick={this.nextQuestion}>{indice === 4? 'See result' : 'next question'}</button>}
             </div>
-          )}
+
+            <div className="question">
+              { isLoading ? <h5> Loading...</h5> : questions && (
+                <div>
+                <h5 className="categoria" data-testid="question-category">{`Category: ${questions.length > 0 && questions[indice].category}`}</h5>
+                <h5 className="pergunta" data-testid="question-text">{questions.length > 0 && questions[indice].question}</h5>
+              
+                  {shuffledAnswers.length > 0 && shuffledAnswers.map((answer, index) => (
+                    <div className="btn-answer" data-testid="answer-options" key={index}>
+                      {
+                        <button
+                        onClick={ () => this.toggleColor(questions[indice], answer) }
+                        disabled={ timeout }
+                        className={questions[indice].correct_answer === answer ? correct : wrong }
+                        type="button"
+                        data-testid={questions[indice].correct_answer === answer ? "correct-answer" : `wrong-answer-${index}`}
+                        >{answer}
+                        </button>}
+                    </div>
+                  ))}
+                
+              </div>
+                        )}
+            </div>
 
           </div>
-        </section>
+
       </div>
 
     );
