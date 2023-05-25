@@ -1,0 +1,73 @@
+.page-ranking {
+  background-color: #2D0140;
+  width: 100%;
+  min-height: 100vh;
+  margin: auto;
+}
+
+.container-info-rank {
+  background-color: #e9e6e6;
+  border-radius: 9px;
+  border: 1px solid #011826;
+  width: 80%;
+  min-height: 350px;
+  margin: 25px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-rank {
+  width: 95%;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5px;
+}
+
+.card-placar {
+  border: 1px solid #011826;
+  border-radius: 9px;
+  width: 300px;
+
+  display: flex;
+}
+
+.placing {
+  font-size: 40px;
+  width: 25px;
+  height: 50px;
+
+}
+
+.card-placar img {
+  border-radius: 50%;
+  height: 110px;
+  margin-top: 20px;
+
+}
+.placar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 163px;
+}
+
+.btn-playagain {
+  cursor: pointer;
+  margin: auto;
+  border: 1px solid #011826;
+  border-radius: 7px;
+  padding: 10px 5px;
+  width: 40%;
+  background-color: #530b71;
+  color: black;
+}
+
+.btn-playagain:hover {
+  background-color: #9124BF;
+  color: #1B0126;
+}

@@ -169,14 +169,14 @@ class Game extends Component {
           <div className="container-quiz">
             <div className="time-container">
               <img src={quiz} alt="img logo quiz" />
-              <h5>{`Tempo restante: ${time}`}</h5>
-              { isAnswered && <button type="button" onClick={this.nextQuestion}>{indice === 4? 'Ver Resultado' : 'Próxima pergunta'}</button>}
+              <h5>{`Time left: ${time}`}</h5>
+              { isAnswered && <button type="button" onClick={this.nextQuestion}>{indice === 4? 'See result' : 'next question'}</button>}
             </div>
 
             <div className="question">
-              { isLoading ? <h5> Carregando...</h5> : questions && (
+              { isLoading ? <h5> Loading...</h5> : questions && (
                 <div>
-                <h5 className="categoria" data-testid="question-category">{`Categoria: ${questions.length > 0 && questions[indice].category}`}</h5>
+                <h5 className="categoria" data-testid="question-category">{`Category: ${questions.length > 0 && questions[indice].category}`}</h5>
                 <h5 className="pergunta" data-testid="question-text">{questions.length > 0 && questions[indice].question}</h5>
               
                   {shuffledAnswers.length > 0 && shuffledAnswers.map((answer, index) => (

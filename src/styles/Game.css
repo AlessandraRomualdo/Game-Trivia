@@ -53,6 +53,7 @@
 
 .question {
   background-color: #e9e6e6;
+  padding: 0 10px;
   width: 65%;
   border-left: 1px solid #011826;
   display: flex;

@@ -62,7 +62,7 @@ class Login extends Component {
               type="text"
               name="name"
               value={ name }
-              placeholder="Digite seu nome"
+              placeholder="Type your name"
               data-testid="input-player-name"
               onChange={ this.handleChange }
             />
@@ -70,7 +70,7 @@ class Login extends Component {
               type="email"
               name="email"
               value={ email }
-              placeholder="Digite seu email"
+              placeholder="Type your email"
               data-testid="input-gravatar-email"
               onChange={ this.handleChange }
             />

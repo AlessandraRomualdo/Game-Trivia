@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { resetAssertions } from '../redux/actions';
 
+import '../App.css';
+import '../styles/Feedback.css';
+
 class Feedback extends Component {
   handleResults() {
     const { assertions } = this.props;
@@ -29,26 +32,34 @@ class Feedback extends Component {
     const messageFeedback = this.handleResults();
     const { assertions, score } = this.props;
     return (
-      <div data-testid="feedback-text">
+      <div className="page-feedback" data-testid="feedback-text">
         <Header />
-        <h1>Feedback</h1>
-        <h2 data-testid="feedback-text">{ messageFeedback }</h2>
-        <h2 data-testid="feedback-total-score">{ score }</h2>
-        <h2 data-testid="feedback-total-question">{ assertions }</h2>
-        <button
-          type="button"
-          data-testid="btn-play-again"
-          onClick={ () => this.handleClickPlayAgain() }
-        >
-          Play Again
-        </button>
-        <button
-          type="button"
-          data-testid="btn-ranking"
-          onClick={ () => this.handleClickRanking() }
-        >
-          Ranking
-        </button>
+        <div className="container-resultado">
+          <h1>FeedBack</h1>
+
+          <div>
+            <h2 data-testid="feedback-text">{ messageFeedback }</h2>
+            <h2 data-testid="feedback-total-score">{ `Score: ${score}` }</h2>
+            <h2 data-testid="feedback-total-question">{ `Assertions: ${assertions}` }</h2>
+          </div>
+
+          <div className="btns-feed">
+            <button
+              type="button"
+              data-testid="btn-play-again"
+              onClick={ () => this.handleClickPlayAgain() }
+            >
+              Play Again
+            </button>
+            <button
+              type="button"
+              data-testid="btn-ranking"
+              onClick={ () => this.handleClickRanking() }
+            >
+              Ranking
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
