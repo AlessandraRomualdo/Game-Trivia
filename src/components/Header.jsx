@@ -34,17 +34,16 @@ class Header extends Component {
     return (
       <div className="header-container">
         <img className="logo logo-header"  src={trivia} alt="Logo" />
-          <div className="container-info-player">
-            <h5 data-testid="header-player-name">{name}</h5>
-            <div className="container-score-header">
-              <h6>Score:</h6>
-              <h6 data-testid="header-score">{score}</h6>
-            </div>
-          </div>
 
           <div className="container-header-img">
             <img data-testid="header-profile-picture" src={imgProfile} alt={`avatar de ${name}`}/>
-            </div>
+          </div>
+
+          <div className="container-info-player">
+            <h5 data-testid="header-player-name">{`Player: ${name}`}</h5>
+            <h6 data-testid="header-score">{`Score ${score}`}</h6>
+          </div>
+
 
       </div>
     )

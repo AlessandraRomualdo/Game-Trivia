@@ -186,37 +186,38 @@ class Game extends Component {
       <div className="page-game">
         <Header />
 
-          <div className="container-quiz">
-            <div className="time-container">
-              <img src={quiz} alt="img logo quiz" />
-              <h5>{`Time left: ${time}`}</h5>
-              { isAnswered && <button type="button" onClick={this.nextQuestion}>{indice === 4? 'See result' : 'next question'}</button>}
-            </div>
-
-            <div className="question">
-              { isLoading ? <h5> Loading...</h5> : questions && (
-                <div>
-                <h5 className="categoria" data-testid="question-category">{`Category: ${questions.length > 0 && questions[indice].category}`}</h5>
-                <h5 className="pergunta" data-testid="question-text">{questions.length > 0 && questions[indice].question}</h5>
-              
-                  {shuffledAnswers.length > 0 && shuffledAnswers.map((answer, index) => (
-                    <div className="btn-answer" data-testid="answer-options" key={index}>
-                      {
-                        <button
-                        onClick={ () => this.toggleColor(questions[indice], answer) }
-                        disabled={ timeout }
-                        className={questions[indice].correct_answer === answer ? correct : wrong }
-                        type="button"
-                        data-testid={questions[indice].correct_answer === answer ? "correct-answer" : `wrong-answer-${index}`}
-                        >{answer}
-                        </button>}
-                    </div>
-                  ))}
-                
+          <div className="container-gameT">
+            <div className="container-quiz">
+              <div className="time-container">
+                <img src={quiz} alt="img logo quiz" />
+                <h5>{`Time left: ${time}`}</h5>
+                { isAnswered && <button type="button" onClick={this.nextQuestion}>{indice === 4? 'See result' : 'next question'}</button>}
               </div>
-                        )}
+              
+              <div className="question">
+                { isLoading ? <h5> Loading...</h5> : questions && (
+                  <div>
+                  <h5 className="categoria" data-testid="question-category">{`Category: ${questions.length > 0 && questions[indice].category}`}</h5>
+                  <h5 className="pergunta" data-testid="question-text">{questions.length > 0 && questions[indice].question}</h5>
+            
+                    {shuffledAnswers.length > 0 && shuffledAnswers.map((answer, index) => (
+                      <div className="btn-answer" data-testid="answer-options" key={index}>
+                        {
+                          <button
+                          onClick={ () => this.toggleColor(questions[indice], answer) }
+                          disabled={ timeout }
+                          className={questions[indice].correct_answer === answer ? correct : wrong }
+                          type="button"
+                          data-testid={questions[indice].correct_answer === answer ? "correct-answer" : `wrong-answer-${index}`}
+                          >{answer}
+                          </button>}
+                      </div>
+                    ))}
+            
+                </div>
+                          )}
+              </div>
             </div>
-
           </div>
 
       </div>
