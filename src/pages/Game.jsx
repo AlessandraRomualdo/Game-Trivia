@@ -20,43 +20,60 @@ class Game extends Component {
     time: 30,
     timeout: false,
     shuffledAnswers: [],
+    intervalId: 0,
   };
 
   componentDidMount() {
     this.requestQuestions();
+    this.startTimer();
   };
-  
-  // componentDidUpdate() {
-  //   if( this.state.time === 0 && this.intervalId) {
-  //     clearInterval(this.intervalId);
-  //   }
-  // };
-  
-  // startTime = () => {
-  //   this.setState({time: 10, timeout: false}, () => { this.time();});
-  // };
-  
-  time = () => {
+
+  componentWillUnmount() {
+    const { intervalId } = this.state;
+    clearInterval(intervalId);
+  }
+
+  startTimer = () => {
     const interval = 1000;
-    const timeout = 30000;
     const intervalId = setInterval(() => {
-      this.setState( prevstate => ({
-        time: prevstate.time - 1
+      this.setState((prevstate) => ({
+        time: prevstate.time - 1,
       }));
       const { time } = this.state;
-      if(time <= 0) {
+      if (time <= 0) {
         // desabilita os btns e habilita o next
-        this.setState({timeout: true, isAnswered: true});
-        clearInterval(intervalId);
-        
+        this.setState({ timeout: true, isAnswered: true, time: 0 });
       }
-    }, interval)
+    }, interval);
+    this.setState({ intervalId });
+  };
+
+  stopTimer = () => {
+    const { intervalId } = this.state;
+    clearInterval(intervalId);
+  };
+  
+  // time = () => {
+  //   const interval = 1000;
+  //   const timeout = 30000;
+  //   const intervalId = setInterval(() => {
+  //     this.setState( prevstate => ({
+  //       time: prevstate.time - 1
+  //     }));
+  //     const { time } = this.state;
+  //     if(time <= 0) {
+  //       // desabilita os btns e habilita o next
+  //       this.setState({timeout: true, isAnswered: true});
+  //       clearInterval(intervalId);
+        
+  //     }
+  //   }, interval)
       
-   setTimeout(() => {
-    clearInterval(intervalId)
-    this.setState({timeout: true, isAnswered: true,})
-   },timeout ) 
-  }
+  //  setTimeout(() => {
+  //   clearInterval(intervalId)
+  //   this.setState({timeout: true, isAnswered: true,})
+  //  },timeout ) 
+  // }
   
   requestQuestions = async ()  => {
     this.setState({isLoading: true});
@@ -84,7 +101,7 @@ class Game extends Component {
       .sort(() => Math.random() - mutiplier);
       this.setState({ shuffledAnswers });
     }
-    this.time();
+    // this.time();
   };
   
   savedRanking = () => {
@@ -125,10 +142,12 @@ class Game extends Component {
       this.setState({ shuffledAnswers, time: 30});
     }
     this.setState({wrong: 'default', correct: 'default', isAnswered: false, timeout: false});
-    this.time();
+    // this.time();
     if (maxLimit === indice) {
       this.savedRanking();
     }
+    this.stopTimer();
+    this.startTimer();
   };
 
   toggleColor = (question, answer) => {
@@ -156,6 +175,7 @@ class Game extends Component {
       const questionScore = TEN + (answerMulti * time);
       dispatch(setScore(questionScore));
     }
+    this.stopTimer();
   };
 
   render() {
